@@ -33,9 +33,7 @@ public class ArrayUtil {
 	 */
 
 	public final static boolean isEmpty(Object[] data) {
-		return data == null || data.length == 0;
-		
-		
+		return data == null || data.length == 0;	
 	}
 
 	public final static int getLength(Object[] data) {
