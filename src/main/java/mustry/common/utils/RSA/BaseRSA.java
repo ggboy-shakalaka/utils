@@ -98,7 +98,7 @@ public class BaseRSA {
 	 * @return byte[]
 	 * @throws CommonUtilException 
 	 */
-	private static byte[] rsaAlgorithm(byte[] data, byte[] key, String wKey,int mode,int block) throws CommonUtilException {
+	private static byte[] rsaAlgorithm(byte[] data, byte[] key, String wKey, int mode, int block) throws CommonUtilException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
 			KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
@@ -155,7 +155,7 @@ public class BaseRSA {
 		try {
 			KeyPairGenerator keyPairGen;
 			keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-			keyPairGen.initialize(2048);
+			keyPairGen.initialize(1024);
 			KeyPair keyPair = keyPairGen.generateKeyPair();
 			RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 			RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();

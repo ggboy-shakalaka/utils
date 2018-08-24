@@ -4,26 +4,23 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import mustry.common.utils.bean.BeanUtil;
+import mustry.common.utils.string.StringUtil;
 
 public class MD5Util {
 	public static final char[] DEFAULT_DICIONARY = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
 	
-	/**
-	 * MD5 摘要
-	 * @param data
-	 * @param dictionary
-	 * @return
-	 */
+	public final static String digest(String data) {
+		return digest(StringUtil.toBytes(data), DEFAULT_DICIONARY);
+	}
+	
+	public final static String digest(byte[] data) {
+		return digest(data, DEFAULT_DICIONARY);
+	}
+	
 	public final static String digest(byte[] data, String dictionary) {
 		return digest(data, dictionary.toCharArray());
 	}
 	
-	/**
-	 * MD5 摘要
-	 * @param data
-	 * @param dictionary
-	 * @return
-	 */
 	public final static String digest(byte[] data, char[] dictionary) {
 		try {
 			if (BeanUtil.isEmpty(data) || BeanUtil.isEmpty(dictionary)) {

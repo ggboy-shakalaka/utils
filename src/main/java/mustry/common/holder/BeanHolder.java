@@ -3,33 +3,38 @@ package mustry.common.holder;
 import java.util.HashMap;
 import java.util.Map;
 
+import mustry.common.exception.CommonUtilException;
+
 public class BeanHolder {
 
 	private final static Map<Class<?>, Object> beanMap = new HashMap<Class<?>, Object>();
 
-	@SuppressWarnings({ "unchecked" })
-	public final static <T> T getBean(Class<T> clazz) {
-		Object bean = null;
-		if ((bean = get(clazz)) != null)
-			return (T) bean;
-		try {
-			synchronized (clazz) {
-				if ((bean = get(clazz)) != null)
-					return (T) bean;
-				bean = clazz.getConstructor().newInstance();
-				put(clazz, bean);
-				return (T) bean;
-			}
-		} catch (Exception e) {
+	public final static <T> T getBean(Class<T> clazz) throws CommonUtilException {
+		if (clazz == null)
 			return null;
+
+		T bean = null;
+		if ((bean = get(clazz)) == null) {
+			try {
+				synchronized (clazz) {
+					if ((bean = get(clazz)) == null)
+						bean = put(clazz, clazz.getConstructor().newInstance());
+				}
+			} catch (Exception e) {
+				throw new CommonUtilException("");
+			}
 		}
+		
+		return bean;
 	}
 
-	private static Object get(Class<?> clazz) {
-		return beanMap.get(clazz);
+	@SuppressWarnings("unchecked")
+	private static <T> T get(Class<T> clazz) {
+		return (T) beanMap.get(clazz);
 	}
 
-	private static Object put(Class<?> clazz, Object bean) {
-		return beanMap.put(clazz, bean);
+	@SuppressWarnings("unchecked")
+	private static <T> T put(Class<T> clazz, Object bean) {
+		return (T) beanMap.put(clazz, bean);
 	}
 }

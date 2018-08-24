@@ -91,10 +91,31 @@ public class StringUtil {
 		}
 		return data.length();
 	}
-	
+
 	public final static String toStringAndClear(StringBuilder sb) {
 		String result = sb.toString();
 		sb.delete(0, sb.length());
 		return result;
+	}
+
+	public final static byte[] hexStringToBytes(String data) {
+		if (StringUtil.isEmpty(data)) {
+			return new byte[0];
+		}
+
+		if ((data.length() & 1) > 0) {
+			data = data.substring(0, data.length() - 1) + "0" + data.substring(data.length() - 1, data.length());
+		}
+		byte[] result = new byte[data.length() / 2];
+
+		char[] ch = data.toCharArray();
+		for (int i = 0; i < result.length; i++) {
+			result[i] = (byte) (getCharHex(ch[i * 2]) * 16 + getCharHex(ch[i * 2 + 1]));
+		}
+		return result;
+	}
+
+	private final static int getCharHex(char ch) {
+		return ch < 58 ? ch - 48 : ch < 91 ? ch - 55 : ch - 87;
 	}
 }
