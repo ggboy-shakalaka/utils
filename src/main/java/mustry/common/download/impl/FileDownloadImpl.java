@@ -287,7 +287,7 @@ public class FileDownloadImpl implements FileDownload {
 
 	private void unlockIndex(int index) {
 		synchronized (lockList) {
-			lockList.remove(new Integer(index));
+			lockList.remove(index);
 		}
 	}
 

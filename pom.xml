@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<name>ggboy-utils</name>
 	
-	<groupId>jar.ggboy.utils</groupId>
+	<groupId>java.ggboy.utils</groupId>
 	<artifactId>utils</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
 
