@@ -25,7 +25,7 @@ public class Validator {
 					}
 				} else {
 					switch (verify.Type()) {
-					case ParameterType.MAIL:
+					case MAIL:
 						if (!(value instanceof String)) {
 							throw new CommonUtilException(ErrorCode.parameter_validate_failed,
 									field.getName() + " is not String");
@@ -35,7 +35,7 @@ public class Validator {
 									field.getName() + " is not mail");
 						}
 						break;
-					case ParameterType.MOBILE:
+					case MOBILE:
 						if (!(value instanceof String)) {
 							throw new CommonUtilException(ErrorCode.parameter_validate_failed,
 									field.getName() + " is not String");
@@ -45,13 +45,13 @@ public class Validator {
 									field.getName() + " is not mail");
 						}
 						break;
-					case ParameterType.STRING:
+					case STRING:
 						if (!(value instanceof String)) {
 							throw new CommonUtilException(ErrorCode.parameter_validate_failed,
 									field.getName() + " is not String");
 						}
 						break;
-					case ParameterType.NUMBER:
+					case NUMBER:
 						break;
 					default:
 						break;
